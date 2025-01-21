@@ -1,97 +1,86 @@
-# deep-learning-challenge
-Alphabet Soup Success Predictor - Predict Funding Success for Nonprofits Using Machine Learning and Neural Networks
-<<<<<<< HEAD
+Alphabet Soup Neural Network Model Analysis
 
-Google Colab test was saved and added to the file.  
-=======
-# Alphabet Soup Neural Network Model Analysis
+Overview of the Analysis
 
-## Overview of the Analysis
+This project aimed to create a deep learning model to help Alphabet Soup predict whether nonprofit funding applicants would be successful. We used data about past applicants, cleaned it, trained a neural network, and tested how well it could make predictions. The goal was to reach an accuracy of 75% or higher.
 
-This analysis aims to create a deep learning model to assist Alphabet Soup in predicting whether funding applicants will be successful. It involves preprocessing the data, designing and training a neural network model, and evaluating its performance to meet the target accuracy of 75% or higher.
+Results
+Data Preprocessing
+Target Variable (What We’re Predicting):
 
----
+The column IS_SUCCESSFUL was our target. It indicates if an applicant was successful (1) or not (0).
+Feature Variables (What the Model Uses to Predict):
 
-## Results
+All other columns, except for EIN and NAME, were used as features.
+Removed Variables:
 
-### Data Preprocessing
+EIN and NAME were removed because they don’t help predict success. EIN is just an ID; NAME is textual data that doesn’t add useful information.
+Compiling, Training, and Evaluating the Model
+Model Architecture:
 
-- **Target Variable(s):**
+Neurons:
 
-  - `IS_SUCCESSFUL`: This variable indicates whether an applicant was successful (1) or not (0).
+The first hidden layer had 80 neurons.
+The second hidden layer had 30 neurons.
+The output layer had one neuron (to predict success or failure).
 
-- **Feature Variable(s):**
+Layers:
 
-  - All other columns, except for `EIN`, `NAME`, and `IS_SUCCESSFUL`, were used as features after preprocessing.
+Input layer: Took in the features.
 
-- **Removed Variable(s):**
+Hidden layers: Two layers with ReLU activation to handle non-linear patterns.
+Output layer: Used sigmoid activation to predict probabilities (0 to 1).
 
-  - `EIN`: A unique identifier not relevant for prediction.
-  - `NAME`: Contains textual data that is not directly useful for the model.
+Activation Functions:
 
----
+ReLU was chosen for the hidden layers because it works well with non-linear data.
 
-### Compiling, Training, and Evaluating the Model
+Sigmoid was used in the output layer for binary classification (yes or no).
 
-- **Model Architecture:**
+Model Performance Comparison:
 
-  - **Neurons:**
-    - First hidden layer: 80 neurons
-    - Second hidden layer: 30 neurons
-    - Output layer: 1 neuron (for binary classification)
-  - **Layers:**
-    - Input layer: Accepts the features.
-    - Hidden layers: Two layers using ReLU activation for non-linearity.
-    - Output layer: Uses sigmoid activation for binary classification.
-  - **Activation Functions:**
-    - ReLU for the hidden layers to efficiently handle non-linear relationships.
-    - Sigmoid for the output layer to predict probabilities for binary classification.
+Google Colab Results:
+Test Loss: 0.6909
+Test Accuracy: 53.41%
 
-- **Model Performance:**
+Local Neural Network Results (deep_learning_challenge):
+Test Loss: 0.7314
+Test Accuracy: 64.10%
 
-  - **Google Colab Results:**
-    - Test Loss: 0.6909
-    - Test Accuracy: 53.41%
-  - **Local Neural Network Results:**
-    - Test Loss: 0.7314
-    - Test Accuracy: 64.10%
-  - The target accuracy of 75% was not achieved in either environment.
+Neither environment achieved the target accuracy of 75%. However, the local model performed better, with an accuracy of 64.10%, compared to 53.41% in Google Colab.
+Optimization Steps Taken:
 
-- **Optimization Steps:**
+Data Binning:
 
-  1. **Data Binning:**
-     - Rare occurrences in `APPLICATION_TYPE` and `CLASSIFICATION` were grouped into "Other" categories to reduce noise.
-  2. **Feature Scaling:**
-     - Standardized the feature data using `StandardScaler` to ensure all features contributed equally to the model.
-  3. **Architectural Adjustments:**
-     - Increased the number of neurons in the hidden layers.
-     - Experimented with additional hidden layers.
-     - Adjusted the number of epochs and batch sizes for training.
+Combined rare categories in APPLICATION_TYPE and CLASSIFICATION into a group called “Other” to reduce noise in the data.
 
----
+Feature Scaling:
 
-## Summary
+Used StandardScaler to ensure all features were on the same scale so no single feature dominated the learning process.
 
-The neural network model created for this analysis did not meet the target performance of 75% accuracy. Despite preprocessing the data and optimizing the architecture, the model's accuracy plateaued at 64.10%.
+Architectural Adjustments:
 
-### Recommendations
+I tried adding more neurons to the layers.
+Tested additional hidden layers to improve learning.
+Adjusted training parameters, like the number of epochs and batch sizes.
 
-To improve performance, consider the following:
+Summary
 
-1. **Try a Different Model:**
+I found That the neural network model could not achieve the target accuracy of 75% in either Google Colab or the local environment. The regional model performed slightly better, reaching 64.10% accuracy, compared to 53.41% in Google Colab.
 
-   - **Random Forest Classifier:** Often effective for categorical data and can capture non-linear relationships.
-   - **Gradient Boosting Machines (e.g., XGBoost):** Known for high performance on tabular data.
+Recommendations for Improvement
 
-2. **Additional Feature Engineering:**
+Try a Different Model:
 
-   - Analyze the dataset for new feature combinations or transformations that may improve predictive power.
-   - Use domain knowledge to derive new meaningful features.
+Random forest classification could work better because it handles categorical data well and finds patterns in structured data well.
+Gradient Boosting (e.g., XGBoost): Known for its high accuracy with tabular datasets and ability to capture complex relationships.
+Feature Engineering:
 
-3. **Hyperparameter Tuning:**
+Create new features by combining or transforming existing ones. For example, grouping similar classifications or adding indicators for key factors might improve the model's accuracy.
+Hyperparameter Tuning:
 
-   - Perform a grid search or use automated tools like `Keras Tuner` to optimize hyperparameters such as the number of neurons, learning rate, and batch size.
+Use tools like Keras Tuner or GridSearchCV to find the best settings for the neural network, like the optimal number of neurons, layers, learning rates, or batch sizes.
+Increase Data Quality:
 
-By exploring these alternatives, Alphabet Soup can achieve better predictive accuracy for funding success.
-
->>>>>>> faa3606e0b95f631755f2722c4180fc0f948c591
+Consider collecting more data or removing noise from the dataset to improve model performance.
+By exploring these strategies, Alphabet Soup can achieve better predictive results and make smarter funding decisions.
